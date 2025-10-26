@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вход</title>
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="container">
+    <header>
+      <h1>ЗАВСНАР</h1>
+    </header>
+
+    <div class="center">
+      <form class="auth-form" action="/auth" method="post">
+        <div class="form-group">
+          <p class="field">
+            <label class="field__label" for="auth-login">Логин</label>
+            <input class="field__control" id="auth-login" name="login" />
+          </p>
+          <p class="field">
+            <label class="field__label" for="auth-password">Пароль</label>
+            <input
+              class="field__control"
+              id="auth-password"
+              name="password"
+              type="password"
+            />
+          </p>
+        </div>
+
+        <div class="submit-block">
+          <div class="submit-button">
+            <i class=""></i><br />
+            <input type="submit" value="Войти" />
+          </div>
+        </div>
+
+        <!-- <button type="submit">Войти</button> -->
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

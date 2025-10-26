@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завснар - Регистрация</title>
+    <link rel="stylesheet" href="frontend\src\css\style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация в системе "Завснар"</h1>
+        <form id="registerForm">
+            <input type="text" id="last_name" placeholder="Фамилия" required>
+            <input type="text" id="first_name" placeholder="Имя" required>
+            <input type="text" id="patronymic" placeholder="Отчество">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Номер телефона" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="login.html">Войдите</a>.</p>
+        <div id="message"></div>
+    </div>
+    <script src="frontend\src\js\auth.js"></script>
+</body>
+</html>
