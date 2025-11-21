@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms.models import BaseInlineFormSet
@@ -5,15 +7,30 @@ from django.forms.models import BaseInlineFormSet
 from .models import (
     Category,
     Equipment,
-    EquipmentMany,
     HistoryEquipment,
-    HistoryEquipmentMany,
-    HistoryRope,
+    ReservingCart,
     Reservation,
-    ReservationMany,
-    ReservationRope,
-    Rope,
     )
+
+
+@admin.action(description="Выдать")
+def issue(modeladmin, request, queryset):
+    queryset.update(status=True, date_take=datetime.now())
+
+
+@admin.action(description="Принять")
+def accept(modeladmin, request, queryset):
+    for reservation in queryset:
+        HistoryEquipment.objects.create(
+            equipment=reservation.equipment,
+            user=reservation.user,
+            date_take=reservation.date_take,
+            description=reservation.description,
+            amount=reservation.amount,
+            date_return=datetime.now(),
+        )
+        # Удаляем reservation
+        reservation.delete()
 
 
 class EquipmentAdmin(admin.ModelAdmin):
@@ -22,30 +39,7 @@ class EquipmentAdmin(admin.ModelAdmin):
         'name',
         'category',
         'description',
-    )
-    search_fields = ('name',)
-    list_filter = ('category',)
-
-
-class EquipmentManyAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'name',
-        'category',
-        'description',
         'amount',
-    )
-    search_fields = ('name',)
-    list_filter = ('category',)
-
-
-class RopeAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'name',
-        'category',
-        'description',
-        'length',
     )
     search_fields = ('name',)
     list_filter = ('category',)
@@ -59,43 +53,29 @@ class ReservationAdmin(admin.ModelAdmin):
         'user',
         'status',
         'date_take',
+        'amount',
+        'description',
+        'id',
     )
     search_fields = ('equipment',)
     list_filter = ('status',)
-    list_editable = ('status',)
+    actions = [issue, accept]
 
 
-class ReservationManyAdmin(admin.ModelAdmin):
+class HistoryEquipmentAdmin(admin.ModelAdmin):
 
     list_display = (
-        'equipment_many',
+        'equipment',
         'user',
+        'date_take',
+        'date_return',
         'amount',
-        'status',
-        'date_take',
+        'description',
     )
-    search_fields = ('equipment_many',)
-    list_filter = ('status',)
-    list_editable = ('status',)
-
-
-class ReservationRopeAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'rope',
-        'user',
-        'status',
-        'date_take',
-    )
-    search_fields = ('rope',)
-    list_filter = ('status',)
-    list_editable = ('status',)
+    search_fields = ('equipment', 'user')
 
 
 admin.site.register(Category)
 admin.site.register(Equipment, EquipmentAdmin)
-admin.site.register(EquipmentMany, EquipmentManyAdmin)
-admin.site.register(Rope, RopeAdmin)
 admin.site.register(Reservation, ReservationAdmin)
-admin.site.register(ReservationMany, ReservationManyAdmin)
-admin.site.register(ReservationRope, ReservationRopeAdmin)
+admin.site.register(HistoryEquipment, HistoryEquipmentAdmin)
