@@ -19,34 +19,30 @@
     </header>
 
     <div class="center">
-      <form class="auth-form" action="/auth" method="post">
+      <form class="login-form" action="/auth" method="post">
         <div class="form-group">
           <p class="field">
-            <label class="field__label" for="auth-login">Логин</label>
-            <input class="field__control" id="auth-login" name="login" />
+            <label class="field__label" for="phone">Номер телефона</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+79123456789">
           </p>
           <p class="field">
-            <label class="field__label" for="auth-password">Пароль</label>
-            <input
-              class="field__control"
-              id="auth-password"
-              name="password"
-              type="password"
-            />
+            <label class="field__label" for="password">Пароль</label>
+            <input type="password" id="password" name="password" required>
           </p>
         </div>
 
-        <div class="submit-block">
+        <!-- <div class="submit-block">
           <div class="submit-button">
             <i class=""></i><br />
             <input type="submit" value="Войти" />
           </div>
-        </div>
+        </div> -->
 
-        <!-- <button type="submit">Войти</button> -->
+        <button type="submit">Войти</button>
+        <div class="error" id="errorMessage">Неверный номер телефона или пароль.</div>
       </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="login.js"></script>
   </body>
 </html>

@@ -48,7 +48,7 @@ h1 {
     align-items: center;
 }
 
-.auth-form {
+.login-form {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -94,3 +94,7 @@ h1 {
      font-style: normal;
      color: #ffffff;
 }
+
+
+
+/////////////index.html

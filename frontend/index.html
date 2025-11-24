@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Главная страница</title>
-    <link rel="stylesheet" href="frontend\src\styles\main.css">
-</head>
-<body>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias sunt iusto quaerat, expedita dolores facere nihil labore itaque voluptates ut quisquam minima enim et, ex tenetur, quibusdam sit non autem.</p>
-   <div class="container">
-        <h1>Информационная система "Завснар"</h1>
-        <p id="welcome-message">Добро пожаловать!</p>
-        <button onclick="logout()">Выйти</button>
+    <link rel="stylesheet" href="src/css/style-index.css" />
+  </head>
+
+  <body>
+    <header>
+      <img class="img-logo" src="./public/images/logo-black.png" alt="logo" />
+      <form>
+        <input type="text" placeholder="Искать здесь..." />
+        <button type="submit"><img src="./public/images/Search.png" alt=""></button>
+      </form>
+      <div class="in-header">
+        <div>
+          <img src="./public/images/cart.png" alt="" />
+          <p>Корзина</p>
+        </div>
+        <div>
+          <img src="./public/images/account.png" alt="" />
+          <p>Кабинет</p>
+        </div>
+      </div>
+    </header>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias sunt iusto
+      quaerat, expedita dolores facere nihil labore itaque voluptates ut
+      quisquam minima enim et, ex tenetur, quibusdam sit non autem.
+    </p>
+    <div class="container">
+      <h1>Информационная система "Завснар"</h1>
+      <p id="welcome-message">Добро пожаловать!</p>
+      <!-- <button onclick="logout()">Выйти</button> -->
     </div>
     <script src="frontend\src\js\auth.js"></script>
-</body>
+  </body>
 </html>
