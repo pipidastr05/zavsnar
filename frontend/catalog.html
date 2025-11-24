@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог</title>
+    <link rel="stylesheet" href="catalog.css" />
+  </head>
+  <body>
+    <header>
+      <!-- лого, поисковая строка, корзина, личный кабинет -->
+      <form action="" method="get">
+        <input
+          class="search-input"
+          name="s"
+          placeholder="Искать здесь..."
+          type="search"
+        />
+        <button type="submit">Поиск</button>
+      </form>
+    </header>
+
+    <main>
+      <aside class="filters">
+        <div class="load-category-filter">
+          <!-- блок категорий -->
+        </div>
+        <button class="apply-filters-button">Применить фильтры</button>
+        <button class="clear-filters-button">Очистить фильтры</button>
+        <!-- блок фильтров -->
+        <!-- категории (чекбоксы/радио-кнопки) -->
+        <!-- кнопки "Применить фильтры" и "Очистить фильтры" -->
+      </aside>
+
+      <section class="catalog">
+        <!-- здесь будут карточки снаряжения -->
+        <!-- <div class="equipment-cards">
+         <div>
+            <h2>Название</h2>
+            <p>Статус:</p>
+          </div>
+          <button>В корзину</button>
+        </div> -->
+
+        <!-- пагинация -->
+        <div class="pagination"></div>
+      </section>
+    </main>
+
+    <!-- <script src="catalog.js"></script> -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
