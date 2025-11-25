@@ -58,6 +58,16 @@ class Equipment(BaseModel):
         null=False,
     )
 
+    description = models.CharField(
+        verbose_name='Описание',
+        null=True,
+    )
+
+    amount = models.PositiveIntegerField(
+        verbose_name='Количество',
+        null=False,
+    )
+
     class Meta:
         ordering = ['name']
         verbose_name = 'Единица снаряжения'
@@ -122,6 +132,16 @@ class Reservation(BaseModel):
         null=True,
     )
 
+    description = models.CharField(
+        verbose_name='Описание',
+        null=True,
+    )
+
+    amount = models.PositiveIntegerField(
+        verbose_name='Количество',
+        null=False,
+    )
+
     class Meta:
         ordering = ['equipment']
         verbose_name = 'Зарезервированная/выданная единица снаряжения'
@@ -152,6 +172,16 @@ class HistoryEquipment(BaseModel):
 
     date_return = models.DateTimeField(
         verbose_name='Дата сдачи',
+        null=False,
+    )
+
+    description = models.CharField(
+        verbose_name='Описание',
+        null=True,
+    )
+
+    amount = models.PositiveIntegerField(
+        verbose_name='Количество',
         null=False,
     )
 
