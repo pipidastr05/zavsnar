@@ -13,9 +13,7 @@ const checkToken = () => {
 const renderCatalogCards = () => {
   loadCategory();
   loadEquipment();
-  // selectCategory();
   applyFilters();
-  // setupCartHandlers();
 };
 
 //Сохраняю в переменные ссылки на DOM-элементы
@@ -116,6 +114,7 @@ const loadEquipment = () => {
           .join("");
       });
   });
+  addToCart();
 };
 
 //Отрисовка карточки выбранной категории
@@ -200,6 +199,53 @@ const applyFilters = () => {
 //   });
 // };
 
+//Добавление в корзину
+const addToCart = () => {
+  document.addEventListener("DOMContentLoaded", function () {
+    //Добавляю прослушку на всем окнe для 
+    window.addEventListener("click", function (event) {
+      // event.preventDefault();
+      if (event.target.classList.contains("add-to-cart-btn")) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        //Нахожу родителя и записываю его в константу
+        const card = event.target.closest(".equipment-cards");
+        console.log(card);
+        //Нахожу id снаряжения в data-id
+        const cardId = card.dataset.id;
+        console.log(cardId);
+        const token = localStorage.getItem("token");
+        fetch("http://127.0.0.1:8000/api/reservingcart/", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            equipment: `${cardId}`,
+            amount: "1",
+          }),
+        });
+      }
+    });
+  });
+};
+
+
+
+// const goToReservation = () => {
+//   document.addEventListener("DOMContentLoaded", function () {
+//     //Добавляю прослушку на всем окне
+//     window.addEventListener("click", function (event) {
+//       // event.preventDefault();
+//       if (event.target.classList.contains("go-to-reserv-btn")) {
+//         window.location.href = "http://127.0.0.1:5500/frontend/reservation.html";
+//       }
+//     });
+//   });
+// };
+// goToReservation();
+//Работа кнопки добавить в корзину
 
 export { renderCatalogCards };
 export { checkToken };
