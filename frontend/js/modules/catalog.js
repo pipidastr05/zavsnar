@@ -1,5 +1,5 @@
 //Проверка токена
-const checkToken = () => {
+const checkTokenCatalog = () => {
   const token = localStorage.getItem("token");
   if (!token) {
     console.log("Токен не найден, перенаправляю на логин");
@@ -248,4 +248,4 @@ const addToCart = () => {
 //Работа кнопки добавить в корзину
 
 export { renderCatalogCards };
-export { checkToken };
+export { checkTokenCatalog };
