@@ -39,6 +39,7 @@ const scriptRegister = () => {
       .then((json) => {
         console.log(json); //получаю уже готовые данные и вывожу их в консоль
         // alert("Регистрация прошла успешно, осталось войти");
+        
         window.location.href = "http://127.0.0.1:5500/frontend/login.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ входа
       })
 

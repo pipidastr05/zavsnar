@@ -3,21 +3,19 @@ console.log('main.js загружен!');
 import { scriptAuth } from './modules/auth.js';
 import {renderCatalogCards} from './modules/catalog.js';
 import {checkToken} from './modules/catalog.js';
-// import {scriptRegister} from './modules/register.js';
+import {scriptRegister} from './modules/register.js';
 
-// if (window.location.href.includes('register.html')) {
-//   scriptRegister();
-// }
+if (window.location.href.includes('register.html')) {
+  scriptRegister();
+}
 
 if (window.location.href.includes('login.html')) {
   console.log('Запускаем auth модуль');
   scriptAuth();
 } else {
-  console.log('Это не auth страница');
+  console.log('Это не страница входа');
 }
-// if (window.location.href.includes('auth.html')) {
-//   scriptAuth();
-// }
+
 
 // if (window.location.href.includes('catalog.html')) {
 // //   renderCatalogCards();
