@@ -9,7 +9,7 @@ User = get_user_model()
 
 class FoodgramUserViewSet(DjoserUserViewSet):
 
-    def get_serializer_class(self):
+    def get_serializer_class(self, *args, **kwargs):
         if self.action == 'retrieve':
             return UserCartSerializer
-        return UserSerializer
+        return super().get_serializer_class(*args, **kwargs)
