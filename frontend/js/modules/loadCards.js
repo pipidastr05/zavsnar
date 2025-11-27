@@ -52,30 +52,30 @@ const setupCartHandlers = () => {
   });
 };
 
-async function addToCart(equipment) {
-  try {
-    const response = await fetch('http://localhost:3000/cart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        equipmentId: equipment.equipmentId,
-        name: equipment.name,
-        status: equipment.status
-      })
-    });
+// async function addToCart(equipment) {
+//   try {
+//     const response = await fetch('http://localhost:3000/cart', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         equipmentId: equipment.equipmentId,
+//         name: equipment.name,
+//         status: equipment.status
+//       })
+//     });
     
-    if (response.ok) {
-      const newCartItem = await response.json();
-      console.log('Товар добавлен в корзину на сервере!', newCartItem);
-    } else {
-      console.error('Ошибка при добавлении в корзину');
-    }
-  } catch (error) {
-    console.error('Ошибка сети:', error);
-  }
-}
+//     if (response.ok) {
+//       const newCartItem = await response.json();
+//       console.log('Товар добавлен в корзину на сервере!', newCartItem);
+//     } else {
+//       console.error('Ошибка при добавлении в корзину');
+//     }
+//   } catch (error) {
+//     console.error('Ошибка сети:', error);
+//   }
+// }
 
 export { renderCatalogCards };
 

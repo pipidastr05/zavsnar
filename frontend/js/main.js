@@ -17,10 +17,10 @@ if (window.location.href.includes('login.html')) {
 }
 
 
-// if (window.location.href.includes('catalog.html')) {
-// //   renderCatalogCards();
-//   checkToken();
-// }
+if (window.location.href.includes('catalog.html')) {
+  renderCatalogCards();
+  checkToken();
+}
 
 // import { router } from './modules/router.js';
 // import { authService } from './modules/auth.js';
