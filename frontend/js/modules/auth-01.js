@@ -1,7 +1,7 @@
 const scriptAuth = () => {
   //Получение данных с формы
   const formElement = document.querySelector("form"); //нашла форму в html-документе
-  const errorElement = document.querySelector(".error"); //нашла div для сообщений об ошибке
+  const errorElement = document.querySelector('.error') //нашла div для сообщений об ошибке
 
   formElement.addEventListener("submit", (event) => {
     //в форме отслеживаю событие submit (клик по кнопке)
@@ -9,11 +9,11 @@ const scriptAuth = () => {
 
     const formData = new FormData(formElement); //FormData автоматически собирает данные из полей формы
     const formDataObject = Object.fromEntries(formData);
+    
     // Превращает собранные данные в js-объект типа {phone_number: '89835763081', password: '12345678'},
     // где первая чать - атрибут name в инпуте формы
-    console.log(formDataObject);
 
-    fetch("http://127.0.0.1:8000/api/auth/jwt/create/", {
+    fetch('http://127.0.0.1:8000/api/auth/jwt/create/', {
       method: "post",
       headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
       body: JSON.stringify({
@@ -21,15 +21,15 @@ const scriptAuth = () => {
         ...formDataObject, //разворачиваю объект, чтобы все поля попали в тело запроса
       }),
     })
-      .then((response) => {
+
+    .then((response) => {
         console.log("response:", response);
 
-        if (!response.ok) {
-          //если запрос НЕ успешен (не ок)
+        if (!response.ok) { //если запрос НЕ успешен (не ок)
           const errorMessage =
             response.status === 401 //код ответа сервера = 401
-              ? //Тернарный оператор (короткий способ написать if/else через ? и :).
-                "Неправильный номер или пароль" //Если статус 401, тогда "Неправильный..."
+            //Тернарный оператор (короткий способ написать if/else через ? и :).
+              ? "Неправильный номер или пароль" //Если статус 401, тогда "Неправильный..."
               : "Что-то пошло не так :("; //иначе "Что-то..."
 
           throw new Error(errorMessage); //создает объект ошибки с сообщением
@@ -48,10 +48,9 @@ const scriptAuth = () => {
         window.location.href = "http://127.0.0.1:5500/frontend/catalog.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ КАТАЛОГА
       })
 
-      .catch((error) => {
-        //это обработчик ошибок, он ловит ошибки, которые мы "кинули" (throw) ранее
-        errorElement.innerHTML = error.message; //в диве, который я нашла в начале, отображается сообщение об ошибке
-      });
+       .catch((error) => { //это обработчик ошибок, он ловит ошибки, которые мы "кинули" (throw) ранее 
+        errorElement.innerHTML = error.message //в диве, который я нашла в начале, отображается сообщение об ошибке
+    });
   });
 };
 

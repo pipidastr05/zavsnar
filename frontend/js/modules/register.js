@@ -1,4 +1,4 @@
-const scriptAuth = () => {
+const scriptRegister = () => {
   //Получение данных с формы
   const formElement = document.querySelector("form"); //нашла форму в html-документе
   const errorElement = document.querySelector(".error"); //нашла div для сообщений об ошибке
@@ -9,11 +9,10 @@ const scriptAuth = () => {
 
     const formData = new FormData(formElement); //FormData автоматически собирает данные из полей формы
     const formDataObject = Object.fromEntries(formData);
-    // Превращает собранные данные в js-объект типа {phone_number: '89835763081', password: '12345678'},
-    // где первая чать - атрибут name в инпуте формы
-    console.log(formDataObject);
+    //Превращает собранные данные в js-объект типа {phone_number: '89835763081', password: '12345678'},
+    //где первая чать - атрибут name в инпуте формы
 
-    fetch("http://127.0.0.1:8000/api/auth/jwt/create/", {
+    fetch("http://127.0.0.1:8000/api/auth/users/", {
       method: "post",
       headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
       body: JSON.stringify({
@@ -22,14 +21,13 @@ const scriptAuth = () => {
       }),
     })
       .then((response) => {
-        console.log("response:", response);
-
+      
         if (!response.ok) {
           //если запрос НЕ успешен (не ок)
           const errorMessage =
-            response.status === 401 //код ответа сервера = 401
+            response.status === 400 //код ответа сервера = 400
               ? //Тернарный оператор (короткий способ написать if/else через ? и :).
-                "Неправильный номер или пароль" //Если статус 401, тогда "Неправильный..."
+                "Такой пользователь уже существует" //Если статус 401, тогда "Неправильный..."
               : "Что-то пошло не так :("; //иначе "Что-то..."
 
           throw new Error(errorMessage); //создает объект ошибки с сообщением
@@ -39,13 +37,9 @@ const scriptAuth = () => {
       })
 
       .then((json) => {
-        console.log("json:", json); //получаю уже готовые данные и вывожу их в консоль
-
-        // СОХРАНяю ТОКЕН В localStorage
-        localStorage.setItem("token", json.access);
-        console.log("Токен сохранен!");
-
-        window.location.href = "http://127.0.0.1:5500/frontend/catalog.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ КАТАЛОГА
+        console.log(json); //получаю уже готовые данные и вывожу их в консоль
+        // alert("Регистрация прошла успешно, осталось войти");
+        window.location.href = "http://127.0.0.1:5500/frontend/login.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ входа
       })
 
       .catch((error) => {
@@ -55,4 +49,4 @@ const scriptAuth = () => {
   });
 };
 
-export { scriptAuth };
+export { scriptRegister };

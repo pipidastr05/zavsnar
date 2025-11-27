@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация</title>
+    <!-- <link rel="stylesheet" href="src/css/style.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="container">
+    <header>
+      <h1>ЗАВСНАР</h1>
+    </header>
+
+    <div class="center">
+      <form class="register-form" method="post">
+        <div class="form-group">
+          <p class="field"> <!-- телефон -->
+            <label class="field__label" for="phone">Номер телефона</label>
+            <input type="tel" id="phone" name="phone_number" required placeholder="89123456789" autocomplete="current-password">
+          </p>
+          <p class="field"><!-- почта -->
+            <label class="field__label" for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="" autocomplete="current-password">
+          </p>
+           <p class="field"> <!-- Логин -->
+            <label class="field__label" for="username">Логин</label>
+            <input type="username" id="username" name="username" required placeholder="" autocomplete="current-password">
+          </p>
+          <p class="field"> <!-- Имя -->
+            <label class="field__label" for="first_name">Имя</label>
+            <input type="first_name" id="first_name" name="first_name" required placeholder="" autocomplete="current-password">
+          </p>
+          <p class="field"> <!-- Фамилия -->
+            <label class="field__label" for="last_name">Фамилия</label>
+            <input type="last_name" id="last_name" name="last_name" required placeholder="" autocomplete="current-password">
+          </p>
+          <p class="field"> <!-- Отчество -->
+            <label class="field__label" for="father_name">Отчество</label>
+            <input type="father_name" id="father_name" name="father_name" required placeholder="" autocomplete="current-password">
+          </p>
+          <p class="field"><!-- Пароль -->
+            <label class="field__label" for="password">Пароль</label>
+            <input type="password" id="password" name="password" required  autocomplete="current-password">
+          </p>
+        </div>
+
+        <button type="submit">Зарегистрироваться</button>
+        <div class="error" id="errorMessage"></div>
+      </form>
+    </div>
+
+     <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
