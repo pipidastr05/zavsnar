@@ -101,6 +101,14 @@ class ReservingCart(models.Model):
         ordering = ['user']
         verbose_name = 'Карта резервирования'
         verbose_name_plural = 'Карты резервирования'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'equipment'],
+                name='duplicate_user_equipments',
+                violation_error_message='Нельзя добавить один вид снаряжения'
+                ' дважды'
+            )
+        ]
 
     def __str__(self):
         return f'{self.user}'
