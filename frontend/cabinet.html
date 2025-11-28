@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="catalog.css" />
+  </head>
+  <body>
+    <header>
+      <!-- лого, поисковая строка, корзина, личный кабинет -->
+      <form action="" method="get">
+        <input
+          class="search-input"
+          name="s"
+          placeholder="Искать здесь..."
+          type="search"
+        />
+        <button>Поиск</button>
+      </form>
+      <form action="http://127.0.0.1:5500/frontend/reservation.html">
+        <button class="go-to-reserv-btn">Карточка резервирования</button>
+      </form>
+      <form action="http://127.0.0.1:5500/frontend/catalog.html">
+        <button class="go-to-catalog-btn">Вернуться к каталогу</button>
+      </form>
+      <div class="user-actions">
+        <button id="logoutBtn" class="logout-btn">Выйти</button>
+      </div>
+    </header>
+    <main>
+      <section class="personal-cabinet">
+        <h1>Личный кабинет</h1>
+
+        <div class="user-info">
+          <h2>Мои данные</h2>
+          <!-- Здесь можно вывести ФИО, телефон и т.д. -->
+        </div>
+
+        <div class="equipment-section">
+          <h2>Зарезервированное снаряжение</h2>
+          <div class="reserved-equipment">
+            <!-- Сюда вставится зарезервированное снаряжение -->
+          </div>
+        </div>
+
+        <div class="equipment-section">
+          <h2>Выданное снаряжение</h2>
+          <div class="issued-equipment">
+            <!-- Сюда вставится выданное снаряжение -->
+          </div>
+        </div>
+
+        <div class="equipment-section">
+          <h2>История</h2>
+          <div class="equipment-history">
+            <!-- Сюда можно вставить историю -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- <script src="catalog.js"></script> -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

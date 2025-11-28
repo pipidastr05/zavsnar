@@ -2,8 +2,11 @@ console.log('main.js загружен!');
 
 import { scriptAuth } from './modules/auth.js';
 import {renderCatalogCards} from './modules/catalog.js';
-import {checkToken} from './modules/catalog.js';
+import {checkTokenCatalog} from './modules/catalog.js';
 import {scriptRegister} from './modules/register.js';
+import {checkTokenReserv} from './modules/reservation.js';
+import {catalogScript} from './modules/reservation.js';
+import {cabinetScript} from './modules/cabinet.js';
 
 if (window.location.href.includes('register.html')) {
   scriptRegister();
@@ -16,10 +19,18 @@ if (window.location.href.includes('login.html')) {
   console.log('Это не страница входа');
 }
 
-
 if (window.location.href.includes('catalog.html')) {
   renderCatalogCards();
-  checkToken();
+  checkTokenCatalog();
+}
+
+if (window.location.href.includes('reservation.html')) {
+  checkTokenReserv();
+  catalogScript();
+}
+
+if (window.location.href.includes('cabinet.html')) {
+  cabinetScript();
 }
 
 // import { router } from './modules/router.js';

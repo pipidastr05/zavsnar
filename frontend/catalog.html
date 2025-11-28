@@ -16,20 +16,33 @@
           placeholder="Искать здесь..."
           type="search"
         />
-        <button type="submit">Поиск</button>
+        <button>Поиск</button>
+      </form>
+      <form
+        action="http://127.0.0.1:5500/frontend/reservation.html"
+      >
+        <button class="go-to-reserv-btn">Карточка резервирования</button>
+      </form>
+       <form
+        action="http://127.0.0.1:5500/frontend/cabinet.html"
+      >
+        <button class="go-to-cab-btn">Личный кабинет</button>
       </form>
     </header>
 
     <main>
       <aside class="filters">
-        <div class="load-category-filter">
-          <!-- блок категорий -->
-        </div>
-        <button class="apply-filters-button">Применить фильтры</button>
-        <button class="clear-filters-button">Очистить фильтры</button>
-        <!-- блок фильтров -->
-        <!-- категории (чекбоксы/радио-кнопки) -->
-        <!-- кнопки "Применить фильтры" и "Очистить фильтры" -->
+        <form>
+          <h2>Категории</h2>
+          <div class="load-category-filter">
+            <!-- блок категорий -->
+          </div>
+          <button class="apply-filters-button">Применить фильтры</button>
+          <button class="clear-filters-button">Очистить фильтры</button>
+          <!-- блок фильтров -->
+          <!-- категории (чекбоксы/радио-кнопки) -->
+          <!-- кнопки "Применить фильтры" и "Очистить фильтры" -->
+        </form>
       </aside>
 
       <section class="catalog">
