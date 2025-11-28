@@ -6,6 +6,7 @@ import {checkTokenCatalog} from './modules/catalog.js';
 import {scriptRegister} from './modules/register.js';
 import {checkTokenReserv} from './modules/reservation.js';
 import {catalogScript} from './modules/reservation.js';
+import {cabinetScript} from './modules/cabinet.js';
 
 if (window.location.href.includes('register.html')) {
   scriptRegister();
@@ -26,6 +27,10 @@ if (window.location.href.includes('catalog.html')) {
 if (window.location.href.includes('reservation.html')) {
   checkTokenReserv();
   catalogScript();
+}
+
+if (window.location.href.includes('cabinet.html')) {
+  cabinetScript();
 }
 
 // import { router } from './modules/router.js';
