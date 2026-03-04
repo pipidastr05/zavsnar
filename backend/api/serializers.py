@@ -126,6 +126,19 @@ class ReservingCartSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 f'Нельзя добавить снаряжение: {equipment.name} '
                 + 'в карточку резервирования больше чем есть в наличии')
+        request = self.context['request']
+        user = request.user
+        if request.method == 'POST':
+            reservation_exists = ReservingCart.objects.filter(
+                user__exact=user,
+                equipment__exact=equipment,
+            ).exists()
+            print(reservation_exists)
+            if reservation_exists:
+                raise serializers.ValidationError(
+                    'Такое снаряжение уже есть в вашей карточке резервировани.'
+                    ' Если требуется больше просто увеличьте количество.'
+                )
         return super().validate(attrs)
 
 
