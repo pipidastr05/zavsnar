@@ -133,7 +133,6 @@ class ReservingCartSerializer(serializers.ModelSerializer):
                 user__exact=user,
                 equipment__exact=equipment,
             ).exists()
-            print(reservation_exists)
             if reservation_exists:
                 raise serializers.ValidationError(
                     'Такое снаряжение уже есть в вашей карточке резервировани.'
