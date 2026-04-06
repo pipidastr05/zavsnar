@@ -76,6 +76,8 @@ DATABASES = {
     }
 }
 
+# Хранение сессии в БД
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -122,18 +124,22 @@ AUTH_USER_MODEL = 'user.User'
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #    'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny',
     ),
 }
 
-SIMPLE_JWT = {
+'''SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
     'AUTH_HEADER_TYPES': ('Bearer',),
-}
+}'''
 
 DJOSER = {
     'HIDE_USERS': False,
@@ -142,7 +148,16 @@ DJOSER = {
         'current_user': 'user.serializers.UserSerializer',
     },
     'LOGIN_FIELD': 'phone_number',
+    # Отключаем JWT‑специфичные настройки
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Удалить потом!
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Настройки безопасности сессий
+# SESSION_COOKIE_SECURE = True  # только HTTPS в продакшене
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
