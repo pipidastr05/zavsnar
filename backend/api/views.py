@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
-from rest_framework import filters, status, viewsets
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
@@ -48,6 +48,7 @@ class EquipmentViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ReservingCartViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthor,]
+    #permission_classes = [permissions.AllowAny,]
 
     def get_queryset(self):
         return self.request.user.reservingcart.all()

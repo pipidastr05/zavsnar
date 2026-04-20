@@ -1,19 +1,23 @@
 const cabinetScript = () => {
-  checkToken();
   loadUserEquipment();
   setupLogoutHandler();
 };
 
-//Проверка токена
-const checkToken = () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    console.log("Токен не найден, перенаправляю на логин");
-    window.location.href = "login.html";
-  } else {
-    console.log("Токен найден, можно работать");
+// Функция получения CSRF токена из cookie (добавьте в начало файла)
+function getCSRFToken() {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith("csrftoken=")) {
+        cookieValue = decodeURIComponent(cookie.substring("csrftoken=".length));
+        break;
+      }
+    }
   }
-};
+  return cookieValue;
+}
 
 const loadUserEquipment = () => {
   document.addEventListener("DOMContentLoaded", function () {
@@ -21,9 +25,11 @@ const loadUserEquipment = () => {
 
     fetch("http://127.0.0.1:8000/api/auth/users/me/", {
       method: "GET",
+       credentials: "include", //включает отправку куки
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCSRFToken(),
+      }
     })
       .then((response) => {
         if (!response.ok)

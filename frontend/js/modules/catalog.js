@@ -1,14 +1,3 @@
-//Проверка токена
-const checkTokenCatalog = () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    console.log("Токен не найден, перенаправляю на логин");
-    window.location.href = "login.html";
-  } else {
-    console.log("Токен найден, можно работать");
-  }
-};
-
 //Загрузка содержимого страницы
 const renderCatalogCards = () => {
   loadCategory();
@@ -18,20 +7,17 @@ const renderCatalogCards = () => {
 
 //Сохраняю в переменные ссылки на DOM-элементы
 const loadCategoryFilterElement = document.querySelector(
-  ".load-category-filter"
+  ".load-category-filter",
 ); //Блок категорий
 const loadEquipmentCardsElement = document.querySelector(".catalog"); //блок с карточками
 
 //Отрисовка существующих категорий
 const loadCategory = () => {
   document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("token");
     fetch("http://127.0.0.1:8000/api/category/", {
       method: "get",
-      headers: {
-        // "Content-Type": "application/json", //ообщает серверу, что тело запроса отправлено в формате JSON
-        Authorization: `Bearer ${token}`, //авторизованный запрос
-      },
+      headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
+      credentials: "include", //включает отправку куки
     })
       .then((response) => {
         // console.log("response:", response);
@@ -66,9 +52,8 @@ const loadEquipment = () => {
 
     fetch("http://127.0.0.1:8000/api/equipment/", {
       method: "get",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
+      credentials: "include", //включает отправку куки
     })
       .then((response) => {
         return response.json();
@@ -97,8 +82,8 @@ const loadEquipment = () => {
 
             return `
           <div class="equipment-cards" data-id="${item.id}" data-category="${
-              item.category
-            }">
+            item.category
+          }">
             
           <div>
             <h3>${item.name}</h3>
@@ -124,7 +109,7 @@ const selectCategory = () => {
   console.log(selectedRadio);
   //2. Нахожу слаги этих категорий
   const selectedSlug = Array.from(selectedRadio).map(
-    (checkbox) => checkbox.value
+    (checkbox) => checkbox.value,
   );
   console.log("Слаги категорий:", selectedSlug);
   //3. Отображаю на странице карточки в соответствии с выбранным слагом
@@ -132,9 +117,8 @@ const selectCategory = () => {
 
   fetch(`http://127.0.0.1:8000/api/equipment/?category=${selectedSlug}`, {
     method: "get",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
+    credentials: "include", //включает отправку куки
   })
     .then((response) => {
       return response.json();
@@ -199,10 +183,26 @@ const applyFilters = () => {
 //   });
 // };
 
+// Функция получения CSRF токена из cookie (добавьте в начало файла)
+function getCSRFToken() {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith("csrftoken=")) {
+        cookieValue = decodeURIComponent(cookie.substring("csrftoken=".length));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 //Добавление в корзину
 const addToCart = () => {
   document.addEventListener("DOMContentLoaded", function () {
-    //Добавляю прослушку на всем окнe для 
+    //Добавляю прослушку на всем окнe для
     window.addEventListener("click", function (event) {
       // event.preventDefault();
       if (event.target.classList.contains("add-to-cart-btn")) {
@@ -214,13 +214,13 @@ const addToCart = () => {
         //Нахожу id снаряжения в data-id
         const cardId = card.dataset.id;
         console.log(cardId);
-        const token = localStorage.getItem("token");
         fetch("http://127.0.0.1:8000/api/reservingcart/", {
           method: "post",
+          credentials: "include", //включает отправку куки
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+            "X-CSRFToken": getCSRFToken(),
+          }, //ообщает серверу, что тело запроса отправлено в формате JSON
           body: JSON.stringify({
             equipment: `${cardId}`,
             amount: "1",
@@ -230,8 +230,6 @@ const addToCart = () => {
     });
   });
 };
-
-
 
 // const goToReservation = () => {
 //   document.addEventListener("DOMContentLoaded", function () {
@@ -248,4 +246,3 @@ const addToCart = () => {
 //Работа кнопки добавить в корзину
 
 export { renderCatalogCards };
-export { checkTokenCatalog };

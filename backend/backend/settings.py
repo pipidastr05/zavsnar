@@ -131,8 +131,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
 }
 
@@ -161,3 +161,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 # SESSION_COOKIE_SECURE = True  # только HTTPS в продакшене
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
+
+'''CSRF_COOKIE_HTTPONLY = False  # Чтобы JS мог прочитать CSRF cookie
+CSRF_COOKIE_SAMESITE = 'Lax'''
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+]

@@ -1,27 +1,31 @@
-//Проверка токена
-const checkTokenReserv = () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    console.log("Токен не найден, перенаправляю на логин");
-    window.location.href = "login.html";
-  } else {
-    console.log("Токен найден, можно работать");
-  }
-};
-
 const catalogScript = () => {
   loadResEquipment();
   sendCart();
   document.addEventListener("DOMContentLoaded", function () {
     loadResEquipment();
     setupRemoveHandlers();
-    
   });
 };
 
+// Функция получения CSRF токена из cookie (добавьте в начало файла)
+function getCSRFToken() {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith("csrftoken=")) {
+        cookieValue = decodeURIComponent(cookie.substring("csrftoken=".length));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 //Сохраняю в переменные ссылки на DOM-элементы
 const loadEquipmentCardsElement = document.querySelector(
-  ".load-equipment-cards"
+  ".load-equipment-cards",
 );
 
 //Отрисовка карточек каталога
@@ -31,9 +35,11 @@ const loadResEquipment = () => {
 
     fetch("http://127.0.0.1:8000/api/reservingcart/", {
       method: "get",
+      credentials: "include", //включает отправку куки
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCSRFToken(),
+      }
     })
       .then((response) => {
         return response.json();
@@ -79,9 +85,11 @@ const removeFromCart = (cartItemId) => {
 
   fetch(`http://127.0.0.1:8000/api/reservingcart/${cartItemId}/`, {
     method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    credentials: "include", //включает отправку куки
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCSRFToken(),
+      },
   })
     .then((response) => {
       if (response.ok) {
@@ -105,66 +113,65 @@ const sendCart = () => {
 
         console.log("Комментарий:", commentText);
 
-// 2. Проверяем что комментарий не пустой
+        // 2. Проверяем что комментарий не пустой
         if (!commentText) {
           alert("Пожалуйста, добавьте комментарий (куда, зачем)");
           return;
         }
 
         const token = localStorage.getItem("token");
-        
+
         // 3. Отправляем запрос на подтверждение резервирования
         fetch("http://127.0.0.1:8000/api/reservingcart/reserv/", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+          credentials: "include", //включает отправку куки
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCSRFToken(),
+      },
           body: JSON.stringify({
-            description: commentText,  // комментарий пользователя
+            description: commentText, // комментарий пользователя
           }),
         })
-        .then(response => {
-          if (!response.ok) throw new Error('Ошибка отправки заявки');
-          return response.json();
-        })
-        .then(data => {
-          console.log("Заявка отправлена на рассмотрение:", data);
-          alert("Заявка отправлена на рассмотрение администратору!");
-          
-          // Очищаем текстовое поле после успешной отправки
-          commentElement.value = "";
-          
-          // Опционально: перенаправляем на другую страницу
-          // window.location.href = "success.html";
-        })
-        .catch(error => {
-          console.error("Ошибка отправки:", error);
-          alert("Ошибка при отправке заявки. Попробуйте еще раз.");
-            });
+          .then((response) => {
+            if (!response.ok) throw new Error("Ошибка отправки заявки");
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Заявка отправлена на рассмотрение:", data);
+            alert("Заявка отправлена на рассмотрение администратору!");
+
+            // Очищаем текстовое поле после успешной отправки
+            commentElement.value = "";
+
+            // Опционально: перенаправляем на другую страницу
+            // window.location.href = "success.html";
+          })
+          .catch((error) => {
+            console.error("Ошибка отправки:", error);
+            alert("Ошибка при отправке заявки. Попробуйте еще раз.");
+          });
       }
     });
   });
 };
-        //Нахожу родителя и записываю его в константу
-        // const card = event.target.closest(".comment");
-        // console.log(card);
-        // //Нахожу id снаряжения в data-id
-        // const cardId = card.dataset.id;
-        // console.log(cardId);
-        // const token = localStorage.getItem("token");
-        // fetch("http://127.0.0.1:8000/api/reservingcart/", {
-        //   method: "post",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        //   body: JSON.stringify({
-        //     equipment: `${cardId}`,
-        //     amount: "1",
-        //   }),
-        // });
-
+//Нахожу родителя и записываю его в константу
+// const card = event.target.closest(".comment");
+// console.log(card);
+// //Нахожу id снаряжения в data-id
+// const cardId = card.dataset.id;
+// console.log(cardId);
+// const token = localStorage.getItem("token");
+// fetch("http://127.0.0.1:8000/api/reservingcart/", {
+//   method: "post",
+//   headers: {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer ${token}`,
+//   },
+//   body: JSON.stringify({
+//     equipment: `${cardId}`,
+//     amount: "1",
+//   }),
+// });
 
 export { catalogScript };
-export { checkTokenReserv };

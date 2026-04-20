@@ -1,9 +1,8 @@
 const scriptAuth = () => {
-
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
-    console.log('Найден токен, очищаем...');
-    localStorage.removeItem('token');
+    console.log("Найден токен, очищаем...");
+    localStorage.removeItem("token");
   }
   //Получение данных с формы
   const formElement = document.querySelector("form"); //нашла форму в html-документе
@@ -19,9 +18,10 @@ const scriptAuth = () => {
     // где первая чать - атрибут name в инпуте формы
     console.log(formDataObject);
 
-    fetch("http://127.0.0.1:8000/api/auth/jwt/create/", {
+    fetch("http://127.0.0.1:8000/api/auth/login/", {
       method: "post",
       headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
+      credentials: "include", //включает отправку куки
       body: JSON.stringify({
         //превращаю объект в строку (json)
         ...formDataObject, //разворачиваю объект, чтобы все поля попали в тело запроса
@@ -44,12 +44,11 @@ const scriptAuth = () => {
         return response.json(); //получаю сырой ответ от сервера и преобразую его в json
       })
 
-      .then((json) => {
-        console.log("json:", json); //получаю уже готовые данные и вывожу их в консоль
-
-        // СОХРАНяю ТОКЕН В localStorage
-        localStorage.setItem("token", json.access);
-        console.log("Токен сохранен!");
+      .then((data) => {
+        console.log(data.message); //получаю уже готовые данные и вывожу их в консоль
+        console.log(data.user_id); // 1
+        console.log(data.username); // "user"
+        console.log(data.access); // undefined (такого поля нет)
 
         window.location.href = "http://127.0.0.1:5500/frontend/catalog.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ КАТАЛОГА
       })

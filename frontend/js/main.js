@@ -2,9 +2,7 @@ console.log('main.js загружен!');
 
 import { scriptAuth } from './modules/auth.js';
 import {renderCatalogCards} from './modules/catalog.js';
-import {checkTokenCatalog} from './modules/catalog.js';
 import {scriptRegister} from './modules/register.js';
-import {checkTokenReserv} from './modules/reservation.js';
 import {catalogScript} from './modules/reservation.js';
 import {cabinetScript} from './modules/cabinet.js';
 
@@ -21,11 +19,9 @@ if (window.location.href.includes('login.html')) {
 
 if (window.location.href.includes('catalog.html')) {
   renderCatalogCards();
-  checkTokenCatalog();
 }
 
 if (window.location.href.includes('reservation.html')) {
-  checkTokenReserv();
   catalogScript();
 }
 
