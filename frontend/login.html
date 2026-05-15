@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Вход</title>
-    <!-- <link rel="stylesheet" href="src/css/style.css" /> -->
+    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,38 +13,40 @@
     />
   </head>
 
-  <body class="container">
-    <header>
-      <h1>ЗАВСНАР</h1>
-    </header>
-
-    <div class="center">
-      <form class="login-form" method="post">
-        <div class="form-group">
-          <p class="field">
-            <label class="field__label" for="phone">Номер телефона</label>
-            <input type="tel" id="phone" name="phone_number" required placeholder="89123456789" autocomplete="current-password">
-          </p>
-          <p class="field">
-            <label class="field__label" for="password">Пароль</label>
-            <input type="password" id="password" name="password" required  autocomplete="current-password">
-          </p>
+  <body class="reg-log">
+    <main class="reg-log-content">
+      <h1>Вход в систему</h1>
+      <form class="reg-log-form" method="post">
+        <div class="form-item">
+          <label class="field__label" for="phone">Номер телефона</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone_number"
+            required
+            placeholder="89123456789"
+            autocomplete="current-password"
+          />
         </div>
 
-        <!-- <div class="submit-block">
-          <div class="submit-button">
-            <i class=""></i><br />
-            <input type="submit" value="Войти" />
-          </div>
-        </div> -->
-
-        <button type="submit">Войти</button>
-        <div class="error" id="errorMessage"></div>
+        <div class="form-item">
+          <label class="field__label" for="password">Пароль</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+        <button type="submit" class="reg-log-button">Войти</button>
       </form>
-    </div>
 
-    <a href="http://127.0.0.1:5500/frontend/register.html">Регистрация</a>
+      
+      <div class="error" id="errorMessage"></div>
 
-     <script type="module" src="./js/main.js"></script>
+      <a href="http://127.0.0.1:5500/frontend/register.html">Переход на страницу регистрации</a>
+    </main>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

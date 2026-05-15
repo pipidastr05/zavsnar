@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,56 +6,133 @@
     <title>Личный кабинет</title>
     <link rel="stylesheet" href="catalog.css" />
   </head>
-  <body>
-    <header>
-      <!-- лого, поисковая строка, корзина, личный кабинет -->
-      <form action="" method="get">
+  <body class="index-body">
+    <header class="index-header">
+      <a href="http://127.0.0.1:5500/frontend/catalog.html">
+        <img src="./public/icons/logo-black.png" alt="logo" />
+      </a>
+      <form action="" method="get" class="search-container">
         <input
           class="search-input"
           name="s"
           placeholder="Искать здесь..."
           type="search"
         />
-        <button>Поиск</button>
+        <button class="search-button">
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 21 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.7949 13.0301C16.0148 11.3653 16.5612 9.30137 16.3248 7.25109C16.0883 5.2008 15.0864 3.3154 13.5195 1.97209C11.9527 0.628775 9.93637 -0.0733879 7.87403 0.00607785C5.81168 0.0855436 3.85539 0.940778 2.39653 2.40068C0.937678 3.86058 0.0838441 5.81748 0.00585416 7.87988C-0.0721358 9.94228 0.63147 11.9581 1.9759 13.524C3.32034 15.0899 5.20646 16.0904 7.25691 16.3254C9.30736 16.5604 11.3709 16.0125 13.0348 14.7914H13.0335C13.0705 14.8418 13.1116 14.8901 13.157 14.9363L18.0076 19.7869C18.2438 20.0233 18.5643 20.1562 18.8985 20.1563C19.2327 20.1564 19.5533 20.0238 19.7897 19.7875C20.0261 19.5513 20.159 19.2308 20.1591 18.8966C20.1592 18.5624 20.0266 18.2418 19.7903 18.0054L14.9397 13.1548C14.8947 13.1092 14.8463 13.0683 14.7949 13.0301ZM15.1199 8.187C15.1199 9.09699 14.9407 9.99807 14.5924 10.8388C14.2442 11.6795 13.7338 12.4434 13.0903 13.0869C12.4469 13.7303 11.683 14.2407 10.8422 14.589C10.0015 14.9372 9.10045 15.1164 8.19047 15.1164C7.28048 15.1164 6.3794 14.9372 5.53869 14.589C4.69797 14.2407 3.93407 13.7303 3.29061 13.0869C2.64716 12.4434 2.13674 11.6795 1.7885 10.8388C1.44026 9.99807 1.26103 9.09699 1.26103 8.187C1.26103 6.3492 1.99109 4.58667 3.29061 3.28715C4.59014 1.98763 6.35267 1.25756 8.19047 1.25756C10.0283 1.25756 11.7908 1.98763 13.0903 3.28715C14.3898 4.58667 15.1199 6.3492 15.1199 8.187Z"
+              fill="white"
+            />
+          </svg>
+        </button>
       </form>
-      <form action="http://127.0.0.1:5500/frontend/reservation.html">
-        <button class="go-to-reserv-btn">Карточка резервирования</button>
-      </form>
-      <form action="http://127.0.0.1:5500/frontend/catalog.html">
-        <button class="go-to-catalog-btn">Вернуться к каталогу</button>
-      </form>
-      <div class="user-actions">
-        <button id="logoutBtn" class="logout-btn">Выйти</button>
-      </div>
-    </header>
-    <main>
-      <section class="personal-cabinet">
-        <h1>Личный кабинет</h1>
 
+      <nav class="menu">
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a href="http://127.0.0.1:5500/frontend/reservation.html">
+              <img src="./public/icons/reserv-cart.png" alt="заявка" />
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="http://127.0.0.1:5500/frontend/cabinet.html">
+              <img src="./public/icons/cabinet.png" alt="личный кабинет" />
+            </a>
+          </li>
+          <!-- <li class="menu-item">
+            <a href="http://127.0.0.1:5500/frontend/journal.html">
+              <img src="./public/icons/journal.png" alt="журнал" />
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+    </header>
+
+    <main class="cabinet-main">
+      <h1>Личный кабинет</h1>
+      <section class="personal-cabinet">
         <div class="user-info">
           <h2>Мои данные</h2>
           <!-- Здесь можно вывести ФИО, телефон и т.д. -->
         </div>
+        <button type="submit" class="logout-btn" id="logoutBtn"> Выйти из аккаунта</button>
 
-        <div class="equipment-section">
+        <div class="reserved-equipment">
           <h2>Зарезервированное снаряжение</h2>
-          <div class="reserved-equipment">
-            <!-- Сюда вставится зарезервированное снаряжение -->
+          <!-- <div class="reserved-equipment">
+            
+          </div> -->
+          <table border="1" cellpadding="8" cellspacing="0" class="reserved-table">
+            <thead>
+              <tr>
+                <th>Снаряжение</th>
+                <th>Категория</th>
+                <th>Количество</th>
+                <th>Комментарий</th>
+              </tr>
+            </thead>
+            <tbody id="reserved-tbody">
+              <!-- Сюда будут добавляться строки через JS -->
+            </tbody>
+          </table>
+
+          <div id="empty-message" style="display: none">
+            <p>Нет забронированного снаряжения</p>
           </div>
         </div>
 
-        <div class="equipment-section">
+        <div class="issued-equipment">
           <h2>Выданное снаряжение</h2>
-          <div class="issued-equipment">
-            <!-- Сюда вставится выданное снаряжение -->
+          <!-- <div class="issued-equipment">
+            
+          </div> -->
+          <table border="1" cellpadding="8" cellspacing="0" class="reserved-table">
+            <thead>
+              <tr>
+                <th>Дата выдачи</th>
+                <th>Снаряжение</th>
+                <th>Категория</th>
+                <th>Количество</th>
+                <th>Комментарий</th>
+              </tr>
+            </thead>
+            <tbody id="reserved-tbody">
+              <!-- Сюда будут добавляться строки через JS -->
+            </tbody>
+          </table>
+           <div id="empty-message" style="display: none">
+            <p>Нет забронированного снаряжения</p>
           </div>
         </div>
 
-        <div class="equipment-section">
+        <div class="equipment-history">
           <h2>История</h2>
-          <div class="equipment-history">
-            <!-- Сюда можно вставить историю -->
+          <table border="1" cellpadding="8" cellspacing="0" class="history-table">
+            <thead>
+              <tr>
+                <th>Дата выдачи</th>
+                <th>Дата cдачи</th>
+                <th>Снаряжение</th>
+                <th>Категория</th>
+                <th>Количество</th>
+                <th>Комментарий</th>
+              </tr>
+            </thead>
+            <tbody id="reserved-tbody">
+              <!-- Сюда будут добавляться строки через JS -->
+            </tbody>
+          </table>
+           <div id="empty-message" style="display: none">
+            <p>Нет забронированного снаряжения</p>
           </div>
+
         </div>
       </section>
     </main>

@@ -1,9 +1,4 @@
 const scriptAuth = () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    console.log("Найден токен, очищаем...");
-    localStorage.removeItem("token");
-  }
   //Получение данных с формы
   const formElement = document.querySelector("form"); //нашла форму в html-документе
   const errorElement = document.querySelector(".error"); //нашла div для сообщений об ошибке

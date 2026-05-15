@@ -85,13 +85,13 @@ const loadEquipment = () => {
             item.category
           }">
             
-          <div>
+          <div class="equipment-cards-items">
             <h3>${item.name}</h3>
             <p>Статус: <span class="status">${status}</span></p>
             <p>Доступно: ${available} из ${item.amount}</p>
           </div>
             <button class="add-to-cart-btn" ${available <= 0 ? "disabled" : ""}>
-              Добавить в корзину
+              В ЗАЯВКУ
             </button>
           </div>
         `;
@@ -150,13 +150,13 @@ const selectCategory = () => {
             item.category
           }">
             
-          <div>
+          <div class="equipment-cards-item">
             <h3>${item.name}</h3>
             <p>Статус: <span class="status">${status}</span></p>
             <p>Доступно: ${available} из ${item.amount}</p>
           </div>
             <button class="add-to-cart-btn" ${available <= 0 ? "disabled" : ""}>
-              Добавить в корзину
+              В ЗАЯВКУ
             </button>
           </div>
         `;

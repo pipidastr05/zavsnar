@@ -53,18 +53,18 @@ const loadResEquipment = () => {
 
             return `
            <div class="equipment-cards" data-id="${equipment.id}">
-              <div>
+              <div class="equipment-cards-items">
                 <h3>${equipment.name}</h3>
                 <p>Категория: ${equipment.category}</p>
                 <p>Количество: ${item.amount} шт</p>
-                <p>Описание: ${equipment.description}</p>
+
               </div>
               <button class="remove-from-cart-btn" data-cart-id="${item.id}">
-                Удалить из корзины
+                Удалить
               </button>
             </div>
         `;
-          })
+          }) //                <p>Описание: ${equipment.description}</p>
           .join("");
       });
   });

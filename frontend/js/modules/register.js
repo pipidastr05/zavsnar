@@ -15,6 +15,7 @@ const scriptRegister = () => {
     fetch("http://127.0.0.1:8000/api/auth/users/", {
       method: "post",
       headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
+      credentials: "include", //включает отправку куки
       body: JSON.stringify({
         //превращаю объект в строку (json)
         ...formDataObject, //разворачиваю объект, чтобы все поля попали в тело запроса
@@ -27,7 +28,7 @@ const scriptRegister = () => {
           const errorMessage =
             response.status === 400 //код ответа сервера = 400
               ? //Тернарный оператор (короткий способ написать if/else через ? и :).
-                "Такой пользователь уже существует" 
+                "Такой пользователь уже существует" //Если статус 401, тогда "Неправильный..."
               : "Что-то пошло не так :("; //иначе "Что-то..."
 
           throw new Error(errorMessage); //создает объект ошибки с сообщением
@@ -40,7 +41,7 @@ const scriptRegister = () => {
         console.log(json); //получаю уже готовые данные и вывожу их в консоль
         // alert("Регистрация прошла успешно, осталось войти");
         
-        // window.location.href = "http://127.0.0.1:5500/frontend/login.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ входа
+        window.location.href = "http://127.0.0.1:5500/frontend/login.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ входа
       })
 
       .catch((error) => {

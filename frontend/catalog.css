@@ -1,56 +1,282 @@
-@import 'https://unpkg.com/@a1rth/css-normalize@1.1.3/index.css';
+@import "https://unpkg.com/@a1rth/css-normalize@1.1.3/index.css";
 
-header {
-    padding: 10px;
-    background-color: grey;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+* {
+  font-family: "Roboto Flex", sans-serif;
 }
 
+header {
+  padding: 10px;
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-body {
+  background-color: #e9e9ef;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.index-header {
+  background-color: #ffffff;
+  width: 90vw;
+  box-sizing: border-box;
+  padding: 27px 67px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.24);
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  column-gap: 30px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 2px solid #292933;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 8px 0 8px 16px;
+  width: 707px;
+  height: 41px;
+}
+
+.search-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-button {
+  width: 85px;
+  height: 41px;
+  background-color: #292933;
+  color: white;
+  border-radius: 20px;
+  border: none;
+}
+
+/* Фильтры */
 .filters {
-    margin: 15px;
-    padding: 20px;
-    border-style: solid;
-    border-radius: 15px;
-    width: 282px;
-    display: flex;
-    flex-direction: column;
-    gap: 10;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.24);
+  /* margin: 15px; */
+  padding: 20px;
+  border-radius: 15px;
+  width: 282px;
+  display: flex;
+  flex-direction: column;
+  gap: 10;
 }
 
 .catalog {
-    width: 894px;
-    margin: 15px;
-    padding: 20px;
-    border-style: solid;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
+  width: 894px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    
+.catalog-main {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-inline: auto;
+  margin-top: 40px;
+  align-items: flex-start;
 }
 
 .equipment-cards {
-    border-style: solid;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.24);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
 }
-.equipment-cards button {
-    width: 153px;
-    height: 43px;
-     margin: 5px;
+
+.equipment-cards-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
-.equipment-cards h2 {
-    margin: 5px;
+.equipment-cards-items h3 {
+  margin: 0;
+}
+.equipment-cards-items p {
+  margin: 0;
+}
+
+.add-to-cart-btn {
+  margin-top: 0;
+  height: 43px;
+  width: 136px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 17px;
+  background-color: #292933;
+  transition: background-color 0.3s ease;
+}
+
+.apply-filters-button {
+  margin-top: 30px;
+  height: 43px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 17px;
+  background-color: #292933;
+  transition: background-color 0.3s ease;
+}
+.apply-filters-button:hover {
+  background-color: #000056;
+}
+.apply-filters-button:active {
+  background-color: #00009f;
+  color: #b2b2f2;
+}
+
+.clear-filters-button {
+  margin-top: 10px;
+  height: 43px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 17px;
+  background-color: #929292;
+  transition: background-color 0.3s ease;
+}
+.clear-filters-button:hover {
+  background-color: #000056;
+}
+.clear-filters-button:active {
+  background-color: #00009f;
+  color: #b2b2f2;
+}
+
+.reservation-main {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: auto;
+  margin-top: 10px;
+}
+
+.remove-from-cart-btn {
+  margin-top: 10px;
+  height: 43px;
+  width: 136px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 17px;
+  background-color: #929292;
+  transition: background-color 0.3s ease;
+}
+.remove-from-cart-btn:hover {
+  background-color: #000056;
+}
+.remove-from-cart-btn:active {
+  background-color: #00009f;
+  color: #b2b2f2;
+}
+
+.comment {
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.reserv-btn {
+  margin-top: 15px;
+  height: 43px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 17px;
+  background-color: #292933;
+  transition: background-color 0.3s ease;
+}
+.reserv-btn:hover {
+  background-color: #000056;
+}
+.reserv-btn:active {
+  background-color: #00009f;
+  color: #b2b2f2;
+}
+
+.cabinet-main {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-inline: auto;
+  align-items: flex-start;
+}
+
+
+.cabinet-main h1 {
+    margin-inline: auto;
+}
+
+td {
+    max-width: 400px;
+    word-wrap: break-word;    /* Перенос длинных слов */
+    white-space: normal;      /* Разрешаем перенос */
+}
+ 
+.personal-cabinet {
+    margin-inline: auto;
+}
+
+.reserved-equipment {
+background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.24);
+  border-radius: 15px;
+  padding: 30px;
+  margin: 15px 0;
+}
+.issued-equipment {
+    background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.24);
+  border-radius: 15px;
+  padding: 30px;
+  margin: 15px 0;
+}
+.equipment-history {
+      background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.24);
+  border-radius: 15px;
+  padding: 30px;
+  margin: 15px 0;
+}
+.cabinet-main h3 {
+    margin: 0;
 }
