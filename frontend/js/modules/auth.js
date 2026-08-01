@@ -1,10 +1,5 @@
 const scriptAuth = () => {
 
-  const token = localStorage.getItem('token');
-  if (token) {
-    console.log('Найден токен, очищаем...');
-    localStorage.removeItem('token');
-  }
   //Получение данных с формы
   const formElement = document.querySelector("form"); //нашла форму в html-документе
   const errorElement = document.querySelector(".error"); //нашла div для сообщений об ошибке
@@ -19,9 +14,10 @@ const scriptAuth = () => {
     // где первая чать - атрибут name в инпуте формы
     console.log(formDataObject);
 
-    fetch("http://127.0.0.1:8000/api/auth/jwt/create/", {
+    fetch("http://127.0.0.1:8000/api/auth/login/", {
       method: "post",
       headers: { "Content-Type": "application/json" }, //ообщает серверу, что тело запроса отправлено в формате JSON
+      credentials: "include",
       body: JSON.stringify({
         //превращаю объект в строку (json)
         ...formDataObject, //разворачиваю объект, чтобы все поля попали в тело запроса
