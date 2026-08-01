@@ -12,7 +12,6 @@ const scriptAuth = () => {
     const formDataObject = Object.fromEntries(formData);
     // Превращает собранные данные в js-объект типа {phone_number: '89835763081', password: '12345678'},
     // где первая чать - атрибут name в инпуте формы
-    console.log(formDataObject);
 
     fetch("http://127.0.0.1:8000/api/auth/login/", {
       method: "post",
@@ -24,8 +23,6 @@ const scriptAuth = () => {
       }),
     })
       .then((response) => {
-        console.log("response:", response);
-
         if (!response.ok) {
           //если запрос НЕ успешен (не ок)
           const errorMessage =
@@ -41,12 +38,6 @@ const scriptAuth = () => {
       })
 
       .then((json) => {
-        console.log("json:", json); //получаю уже готовые данные и вывожу их в консоль
-
-        // СОХРАНяю ТОКЕН В localStorage
-        localStorage.setItem("token", json.access);
-        console.log("Токен сохранен!");
-
         window.location.href = "http://127.0.0.1:5500/frontend/catalog.html"; // ПЕРЕНАПРАВляю НА СТРАНИЦУ КАТАЛОГА
       })
 
