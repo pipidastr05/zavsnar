@@ -1,0 +1,13 @@
+
+meta:
+  environment: python
+  toolchain:
+    name: pip
+    version: "3.12"
+
+build:
+  requirementsPath: backend/requirements.txt
+
+run:
+  command: cd backend && gunicorn --bind 0.0.0.0:80 backend.wsgi:application
+  containerPort: 80
