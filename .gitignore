@@ -140,3 +140,5 @@ dmypy.json
 
 static/
 media/
+# Django collected static files
+backend/staticfiles/
